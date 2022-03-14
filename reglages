@@ -5,8 +5,6 @@ export DOSSIER_CROSS=~/u3c
 #0_init
 export INSCRIPTIONS=${DOSSIER_CROSS}/docs/exemples/Inscriptions_TEST2.txt
 export RFIDS_DOSSARDS=${DOSSIER_CROSS}/rfids_dossards
-export BALISE_TEMPS_VIDE=__VIDE__
-export FICHIER_BEEP=/usr/share/sounds/freedesktop/stereo/bell.oga
 
 #1_rfids
 export DOSSIER_URA=ura
@@ -19,3 +17,9 @@ export SYNTHESE=${DOSSIER_CROSS}/${DOSSIER_URA}/synthese_uras
 #3_consolide
 export T0=05:00:00
 export FICHIER_POUR_FRANCK=${DOSSIER_CROSS}/resultat.txt
+
+#reglages 
+export BALISE_TEMPS_VIDE=__VIDE__
+export FICHIER_BEEP=bell.oga
+
+
