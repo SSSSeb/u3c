@@ -4,6 +4,8 @@ set -u
 
 source reglages || exit 1
 
+nb_rfid_prev=0
+
 if [ ! -d $DOSSIER_URA ] ; then
     echo "dossier $DOSSIER_URA n'existe pas"
     exit 1
@@ -14,6 +16,14 @@ cd $DOSSIER_URA || exit 1
 while true
 do
     cat ura* | grep -v "Automatic message" | sort -k1,1 -u | sort -k2,2 | awk '{ print $1" "$2 } '> ${SYNTHESE}
+    nb_rfid=`wc -l ${SYNTHESE}`
+
+    #faire un bruit lorsque le nombre de RFID augmente
+    if [ "$nb_rfid" -gt "$nb_rfid_prev" ] ; then
+        nb_rfid_prev=$nb_rfid
+        paplay ${FICHIER_BEEP}
+    fi
+    
     echo -n "."
     sleep 1
 done

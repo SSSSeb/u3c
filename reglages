@@ -6,6 +6,7 @@ export DOSSIER_CROSS=~/u3c
 export INSCRIPTIONS=${DOSSIER_CROSS}/docs/exemples/Inscriptions_TEST2.txt
 export RFIDS_DOSSARDS=${DOSSIER_CROSS}/rfids_dossards
 export BALISE_TEMPS_VIDE=__VIDE__
+export FICHIER_BEEP=/usr/share/sounds/freedesktop/stereo/bell.oga
 
 #1_rfids
 export DOSSIER_URA=ura

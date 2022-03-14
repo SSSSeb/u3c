@@ -41,3 +41,13 @@ head -3 $RFIDS_DOSSARDS
 echo .
 echo .
 tail -n +2 $RFIDS_DOSSARDS | tail -3
+
+echo ""
+echo ""
+echo "*** test du beep... appuyer sur ENTREE ***"
+echo ""
+echo ""
+
+read ignore
+
+paplay ${FICHIER_BEEP} || exit 1

@@ -42,7 +42,7 @@ do
     cp ${SYNTHESE} ${SYNTHESE}.snapshot || exit 1
 
     #bien remettre la première ligne du fichier en place pour le logiciel de Franck
-    echo -e "NOM\tPRENOM\tSEXE\tNAISSANCE\tNUMERO\tTEMPS\tCOURSE\tDISTANCE\tVILLE\tEMAIL\tCLUB\tLICENCE" > ${FICHIER_POUR_FRANCK}
+    echo -e "NOM\tPRENOM\tSEXE\tNAISSANCE\tNUMERO\tTEMPS\tCOURSE\tDISTANCE\tVILLE\tEMAIL\tCLUB\tLICENCE" > ${FICHIER_POUR_FRANCK}.tmp
     
     while read ligne
     do
@@ -59,8 +59,8 @@ do
         #echo $DTIME $DOSSARD
 
         extrait_ligne $DOSSARD $DTIME
-    done < ${SYNTHESE}.snapshot >> ${FICHIER_POUR_FRANCK}
-
+    done < ${SYNTHESE}.snapshot >> ${FICHIER_POUR_FRANCK}.tmp
+    mv ${FICHIER_POUR_FRANCK}.tmp ${FICHIER_POUR_FRANCK}
     echo -n "."
     sleep 5
 done
