@@ -4,7 +4,17 @@ set -u
 
 source reglages || exit 1
 
+verif_deps()
+{
+    for outil in nc nmap paplay
+    do
+        { type $outil &> /dev/null ; } || { echo "manque $outil..." ; exit 1 ; } 
+    done
+}
+
 clear
+
+verif_deps
 
 #verifications des fichiers de données nécessaires
 if [ ! -f ${INSCRIPTIONS} ] ; then echo "manque fichier d'inscriptions ${INSCRIPTIONS}" ; exit 1 ; fi
