@@ -3,20 +3,22 @@
 export DOSSIER_CROSS=~/u3c
 
 #0_init
-export INSCRIPTIONS=${DOSSIER_CROSS}/docs/exemples/Inscriptions_TEST2.txt
+export INSCRIPTIONS=${DOSSIER_CROSS}/docs/exemples/Inscriptions_TEST3.txt
 export RFIDS_DOSSARDS=${DOSSIER_CROSS}/rfids_dossards
 
 #1_rfids
 export DOSSIER_URA=ura
-export IP_JADAK_URA=192.168.0.1
-export JADAK_PORT=9055
+export IP_JADAK_URA=192.168.0.35
+export PORT_URA=9055
 
 #2_filtre
 export SYNTHESE=${DOSSIER_CROSS}/${DOSSIER_URA}/synthese_uras
 
 #3_consolide
-export T0=05:00:00
-export FICHIER_POUR_FRANCK=${DOSSIER_CROSS}/resultat.txt
+#export T0=05:00:00
+#ATTENTION PAS DE 18H23... IL FAUT METTRE 06:23...
+export T0=07:00:00
+export FICHIER_POUR_FRANCK=${DOSSIER_CROSS}/resultats.txt
 
 #reglages 
 export BALISE_TEMPS_VIDE=__VIDE__
