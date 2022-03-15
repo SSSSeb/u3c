@@ -1,7 +1,5 @@
 #!/bin/bash
 
-set -u
-
 source reglages || exit 1
 
 #cherche une ligne du fichier correspondant au dossard $d et change le temps
@@ -9,7 +7,7 @@ function extrait_ligne()
 {
     d=$1
     t=$2
-    awk -F'\t' '{ if ($5=='"$d"') { print $0 }}' ${INSCRIPTIONS}.mod | sed "s/${BALISE_TEMPS_VIDE}/$t/g"
+    awk -F'\t' '{ if ($5=="'"$d"'") { print $0 }}' ${INSCRIPTIONS}.mod | sed "s/${BALISE_TEMPS_VIDE}/$t/g"
 }
 
 for fichier in $SYNTHESE $RFIDS_DOSSARDS
