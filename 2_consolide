@@ -20,8 +20,9 @@ do
 
     #faire un bruit lorsque le nombre de RFID augmente
     if [ "$nb_rfid" -gt "$nb_rfid_prev" ] ; then
-        nb_rfid_prev=$nb_rfid
         paplay ${FICHIER_BEEP}
+        echo -n "X"
+        nb_rfid_prev=$nb_rfid
     fi
     
     echo -n "."
