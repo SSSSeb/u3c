@@ -6,11 +6,15 @@ code de chronometrage pour le cross de champagnier
 - voir fichier "reglages" pour les adresses IPs 
 - sftp://seb@192.168.0.2 sur le PC de FRANCK
 
-architecture:
+notice:
+
+code à faire tourner avant le départ:
 
 - 0_init: verifie les fichiers d'inscriptions et de RFIDS -> DOSSARDS puis verifie que le BEEP fonctionne
 
 (!) virer les lignes blanches ou pleines de \t mais sans données
+
+programmes à faire tourner en permanence (on peut les redémarrer/arréter indépendamment mais attention 1_rfids risque de rater des arrivées...)
 
 - 1_rfids: demon qui se reconnecte à l'URA et recopie tous les scans dans le dossier ./ura... capable de se reconnecter et de créer un nouveau fichier à chaque reconnection
 
