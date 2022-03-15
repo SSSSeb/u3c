@@ -61,3 +61,21 @@ echo ""
 read ignore
 
 paplay ${FICHIER_BEEP} || exit 1
+
+
+echo ""
+echo ""
+echo "*** appuyer sur ENTREE au démarrage de la course "
+echo "*** effacement des donnees précédentes dans $DOSSIER_URA"
+echo ""
+
+read ignore
+
+t0=`date`
+
+rm -rf ${DOSSIER_URA} || exit 1
+
+echo "démarrage de la course @ $t0"
+echo ""
+echo "recopier la date dans le fichier de reglages"
+echo ""
