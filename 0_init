@@ -62,7 +62,6 @@ read ignore
 
 paplay ${FICHIER_BEEP} || exit 1
 
-
 echo ""
 echo ""
 echo "*** appuyer sur ENTREE au démarrage de la course "
