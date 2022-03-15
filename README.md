@@ -4,6 +4,7 @@ code de chronometrage pour le cross de champagnier
 
 - necessite JADAK URA configuré pour exporter les RFIDS sur http 9055
 - voir reglages pour les adresses IPs 
+- sftp://seb@192.168.0.2 sur le PC de FRANCK
 
 architecture:
 
