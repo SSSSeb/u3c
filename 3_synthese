@@ -2,6 +2,8 @@
 
 source reglages || exit 1
 
+T0=`cat ${FICHIER_T0}`
+
 #cherche une ligne du fichier correspondant au dossard $d et change le temps
 function extrait_ligne()
 {
