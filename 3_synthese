@@ -43,10 +43,10 @@ do
     DOSSARDS_COUREURS[$DOSSARD]="${ligne}"
 done < ${INSCRIPTIONS}.mod
 
-for cle in "${!DOSSARDS_COUREURS[@]}"
-do
-    echo "$cle => ${DOSSARDS_COUREURS[$cle]}"
-done
+# for cle in "${!DOSSARDS_COUREURS[@]}"
+# do
+#     echo "$cle => ${DOSSARDS_COUREURS[$cle]}"
+# done
 
 while true
 do
