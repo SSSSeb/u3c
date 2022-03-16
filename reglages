@@ -3,8 +3,8 @@
 export DOSSIER_CROSS=~/u3c
 
 #0_init
-export INSCRIPTIONS=${DOSSIER_CROSS}/docs/exemples/Inscriptions_TEST3.txt
-export RFIDS_DOSSARDS=${DOSSIER_CROSS}/rfids_dossards
+export FICHIER_INSCRIPTIONS=${DOSSIER_CROSS}/docs/exemples/Inscriptions_TEST3.txt
+export FICHIER_RFIDS_DOSSARDS=${DOSSIER_CROSS}/rfids_dossards
 
 #1_rfids
 export DOSSIER_URA=ura

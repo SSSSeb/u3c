@@ -2,6 +2,7 @@
 
 set -u
 
+# shellcheck disable=SC1091
 source reglages || exit 1
 
 verif_deps()
@@ -17,29 +18,29 @@ clear
 verif_deps
 
 #verifications des fichiers de données nécessaires
-if [ ! -f ${INSCRIPTIONS} ] ; then echo "manque fichier d'inscriptions ${INSCRIPTIONS}" ; exit 1 ; fi
-if [ ! -f ${RFIDS_DOSSARDS} ] ; then echo "manque fichier de RFIDS-DOSSARDS ${RFIDS_DOSSARDS}" ; exit 1 ; fi
+if [ ! -f "${FICHIER_INSCRIPTIONS}" ] ; then echo "manque fichier d'inscriptions ${FICHIER_INSCRIPTIONS}" ; exit 1 ; fi
+if [ ! -f "${FICHIER_RFIDS_DOSSARDS}" ] ; then echo "manque fichier de RFIDS-DOSSARDS ${FICHIER_RFIDS_DOSSARDS}" ; exit 1 ; fi
 
 #re-écrit le fichier d'inscriptions avec des balises __VIDE__ dans la colonne du temps
-awk -F'\t' '{ print $1"\t"$2"\t"$3"\t"$4"\t"$5"\t'${BALISE_TEMPS_VIDE}'\t"$7"\t"$8"\t"$9"\t"$10"\t"$11"\t"$12 }' $INSCRIPTIONS > ${INSCRIPTIONS}.buf
+awk -F'\t' '{ print $1"\t"$2"\t"$3"\t"$4"\t"$5"\t'"${BALISE_TEMPS_VIDE}"'\t"$7"\t"$8"\t"$9"\t"$10"\t"$11"\t"$12 }' "$FICHIER_INSCRIPTIONS" > "${FICHIER_INSCRIPTIONS}".buf
 
-tail -n +2 ${INSCRIPTIONS}.buf > ${INSCRIPTIONS}.mod
-#rm -f ${INSCRIPTIONS}.buf
+tail -n +2 "${FICHIER_INSCRIPTIONS}".buf > "${FICHIER_INSCRIPTIONS}".mod
+rm -f ${FICHIER_INSCRIPTIONS}.buf
 
-inscrits=`wc -l ${INSCRIPTIONS}.mod | awk '{ print $1 }'`
+inscrits=$(wc -l "${FICHIER_INSCRIPTIONS}".mod | awk '{ print $1 }')
 
 echo ""
 echo "***"
-echo "*** $inscrits inscrit(s) dans $INSCRIPTIONS ..."
+echo "*** $inscrits inscrit(s) dans $FICHIER_INSCRIPTIONS ..."
 echo "***"
 echo ""
 
-tail -n +2 $INSCRIPTIONS | head -3
+tail -n +2 "$FICHIER_INSCRIPTIONS" | head -3
 echo .
 echo .
-tail -n +2 $INSCRIPTIONS | tail -3
+tail -n +2 "$FICHIER_INSCRIPTIONS" | tail -3
 
-nb_rfids=`wc -l ${RFIDS_DOSSARDS} | awk '{ print $1 }'`
+nb_rfids=$(wc -l "${FICHIER_RFIDS_DOSSARDS}" | awk '{ print $1 }')
 
 echo ""
 echo ""
@@ -48,10 +49,10 @@ echo "*** $nb_rfids numeros de series RFID enregistrés"
 echo "***"
 echo ""
 
-head -3 $RFIDS_DOSSARDS 
+head -3 "$FICHIER_RFIDS_DOSSARDS"
 echo .
 echo .
-tail -n +2 $RFIDS_DOSSARDS | tail -3
+tail -n +2 "$FICHIER_RFIDS_DOSSARDS" | tail -3
 
 echo ""
 echo ""
@@ -59,9 +60,9 @@ echo "*** test du beep... appuyer sur ENTREE ***"
 echo ""
 echo ""
 
-read ignore
+read -r
 
-paplay ${FICHIER_BEEP} || exit 1
+paplay "${FICHIER_BEEP}" || exit 1
 
 echo ""
 echo ""
@@ -70,13 +71,13 @@ echo "*** ATTENTION a l'effacement à suivre des donnees"
 echo "*** précédentes dans $DOSSIER_URA"
 echo ""
 
-read ignore
+read -r
 
-t0=`date +%I:%M:%S`
+t0=$(date +%I:%M:%S)
 
-rm -rf ${DOSSIER_URA} || exit 1
+rm -rf "${DOSSIER_URA}" || exit 1
 
 echo "démarrage de la course @ $t0"
 echo "écriture de cette date dans ${FICHIER_T0}"
 
-echo $t0 > ${FICHIER_T0} || exit 1
+echo "$t0" > "${FICHIER_T0}" || exit 1

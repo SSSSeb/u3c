@@ -2,23 +2,24 @@
 
 set -u
 
+# shellcheck disable=SC1091
 source reglages || exit 1
 
 nb_rfid_prev=0
 
-if [ ! -d $DOSSIER_URA ] ; then
+if [ ! -d "$DOSSIER_URA" ] ; then
     echo "dossier $DOSSIER_URA n'existe pas"
     exit 1
 fi
 
 while true
 do
-    cat ${DOSSIER_CROSS}/${DOSSIER_URA}/ura* | grep -v "Automatic message" | sort -k1,1 -u | sort -k2,2 | awk '{ print $1" "$2 } '> ${SYNTHESE}.tmp
-    mv ${SYNTHESE}.tmp ${SYNTHESE}
-    nb_rfid=`wc -l ${SYNTHESE} | awk '{ print $1}' `
+    cat "${DOSSIER_CROSS}/${DOSSIER_URA}"/ura* | grep -v "Automatic message" | sort -k1,1 -u | sort -k2,2 | awk '{ print $1" "$2 } '> "${SYNTHESE}".tmp
+    mv "${SYNTHESE}.tmp" "${SYNTHESE}"
+    nb_rfid=$(wc -l "${SYNTHESE}" | awk '{ print $1}' )
     #faire un bruit lorsque le nombre de RFID augmente
     if [ "$nb_rfid" -gt "$nb_rfid_prev" ] ; then
-        paplay ${FICHIER_BEEP}
+        paplay "${FICHIER_BEEP}"
         echo -n "X"
         nb_rfid_prev=$nb_rfid
     fi

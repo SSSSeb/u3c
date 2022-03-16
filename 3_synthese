@@ -1,8 +1,9 @@
 #!/bin/bash
 
+# shellcheck disable=SC1091
 source reglages || exit 1
 
-T0=`cat ${FICHIER_T0}`
+T0=$(cat "${FICHIER_T0}")
 
 #affiche la ligne du coureur de dossard $1 avec son temps mis à $2
 function extrait_ligne()
@@ -12,9 +13,9 @@ function extrait_ligne()
     echo -e "${DOSSARDS_COUREURS[$d]}" | sed "s/${BALISE_TEMPS_VIDE}/$t/g"
 }
 
-for fichier in $SYNTHESE $RFIDS_DOSSARDS
+for fichier in $SYNTHESE $FICHIER_RFIDS_DOSSARDS
 do
-    if [ ! -f $fichier ] ; then
+    if [ ! -f "$fichier" ] ; then
         echo "manque fichier $fichier"
         exit 1
     fi
@@ -24,24 +25,24 @@ done
 declare -A RFIDS_DOSSARDS
 declare -A DOSSARDS_COUREURS
 
-while read ligne
+while read -r ligne
 do
-    RFID=`echo $ligne | awk '{ print $1}'`
-    DOSSARD=`echo $ligne | awk '{ print $2}'`
+    RFID=$(echo "$ligne" | awk '{ print $1}')
+    DOSSARD=$(echo "$ligne" | awk '{ print $2}')
     #echo "ajouter RFID $RFID -> $DOSSARD"
-    RFIDS_DOSSARDS[$RFID]=$DOSSARD
-done < $RFIDS_DOSSARDS
+    RFIDS_DOSSARDS[$RFID]="$DOSSARD"
+done < "${FICHIER_RFIDS_DOSSARDS}"
 
 # for cle in "${!RFIDS_DOSSARDS[@]}"
 # do
 #     echo "$cle => ${RFIDS_DOSSARDS[$cle]}"
 # done
 
-while read ligne
+while read -r ligne
 do
-    DOSSARD=`echo -e "$ligne" | awk -F'\t' '{ print $5 }'`
+    DOSSARD=$(echo -e "$ligne" | awk -F'\t' '{ print $5 }')
     DOSSARDS_COUREURS[$DOSSARD]="${ligne}"
-done < ${INSCRIPTIONS}.mod
+done < "${FICHIER_INSCRIPTIONS}.mod"
 
 # for cle in "${!DOSSARDS_COUREURS[@]}"
 # do
@@ -51,28 +52,28 @@ done < ${INSCRIPTIONS}.mod
 while true
 do
     #bloque une version du fichier pour travailler sur un fichier stabilisé
-    cp ${SYNTHESE} ${SYNTHESE}.snapshot || exit 1
+    cp "${SYNTHESE}" "${SYNTHESE}.snapshot" || exit 1
 
     #bien remettre la première ligne du fichier en place pour le logiciel de Franck
-    echo -e "NOM\tPRENOM\tSEXE\tNAISSANCE\tNUMERO\tTEMPS\tCOURSE\tDISTANCE\tVILLE\tEMAIL\tCLUB\tLICENCE" > ${FICHIER_POUR_FRANCK}.tmp
+    echo -e "NOM\tPRENOM\tSEXE\tNAISSANCE\tNUMERO\tTEMPS\tCOURSE\tDISTANCE\tVILLE\tEMAIL\tCLUB\tLICENCE" > "${FICHIER_POUR_FRANCK}.tmp"
     
-    while read ligne
+    while read -r ligne
     do
-        RFID=`echo $ligne | awk '{ print $1}'`
-        TIME=`echo $ligne | awk '{ print $2}'`
+        RFID=$(echo "$ligne" | awk '{ print $1}')
+        TIME=$(echo "$ligne" | awk '{ print $2}')
 
-        t0=`date -d "$T0" +%s`
-        tf=`date -d "$TIME" +%s`
-        dt=$(($tf-$t0))
-        DTIME=`date -d "0000-01-01 $dt seconds" +%T`
+        t0=$(date -d "$T0" +%s)
+        tf=$(date -d "$TIME" +%s)
+        dt=$((tf-t0))
+        DTIME=$(date -d "0000-01-01 $dt seconds" +%T)
 
         DOSSARD=${RFIDS_DOSSARDS[$RFID]}
 
         #echo $DTIME $DOSSARD
 
-        extrait_ligne $DOSSARD $DTIME
-    done < ${SYNTHESE}.snapshot >> ${FICHIER_POUR_FRANCK}.tmp
-    mv ${FICHIER_POUR_FRANCK}.tmp ${FICHIER_POUR_FRANCK}
+        extrait_ligne "$DOSSARD" "$DTIME"
+    done < "${SYNTHESE}.snapshot" >> "${FICHIER_POUR_FRANCK}.tmp"
+    mv "${FICHIER_POUR_FRANCK}.tmp" "${FICHIER_POUR_FRANCK}"
     echo -n "."
     sleep 5
 done
