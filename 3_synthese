@@ -4,12 +4,12 @@ source reglages || exit 1
 
 T0=`cat ${FICHIER_T0}`
 
-#cherche une ligne du fichier correspondant au dossard $d et change le temps
+#affiche la ligne du coureur de dossard $1 avec son temps mis à $2
 function extrait_ligne()
 {
     d=$1
     t=$2
-    awk -F'\t' '{ if ($5=="'"$d"'") { print $0 }}' ${INSCRIPTIONS}.mod | sed "s/${BALISE_TEMPS_VIDE}/$t/g"
+    echo -e "${DOSSARDS_COUREURS[$d]}" | sed "s/${BALISE_TEMPS_VIDE}/$t/g"
 }
 
 for fichier in $SYNTHESE $RFIDS_DOSSARDS
@@ -22,6 +22,7 @@ done
 
 #fabrique la base de données des RFIDS -> DOSSARDS
 declare -A RFIDS_DOSSARDS
+declare -A DOSSARDS_COUREURS
 
 while read ligne
 do
@@ -35,6 +36,17 @@ done < $RFIDS_DOSSARDS
 # do
 #     echo "$cle => ${RFIDS_DOSSARDS[$cle]}"
 # done
+
+while read ligne
+do
+    DOSSARD=`echo -e "$ligne" | awk -F'\t' '{ print $5 }'`
+    DOSSARDS_COUREURS[$DOSSARD]="${ligne}"
+done < ${INSCRIPTIONS}.mod
+
+for cle in "${!DOSSARDS_COUREURS[@]}"
+do
+    echo "$cle => ${DOSSARDS_COUREURS[$cle]}"
+done
 
 while true
 do

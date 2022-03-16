@@ -21,11 +21,12 @@ if [ ! -f ${INSCRIPTIONS} ] ; then echo "manque fichier d'inscriptions ${INSCRIP
 if [ ! -f ${RFIDS_DOSSARDS} ] ; then echo "manque fichier de RFIDS-DOSSARDS ${RFIDS_DOSSARDS}" ; exit 1 ; fi
 
 #re-écrit le fichier d'inscriptions avec des balises __VIDE__ dans la colonne du temps
-awk -F'\t' '{ print $1"\t"$2"\t"$3"\t"$4"\t"$5"\t'${BALISE_TEMPS_VIDE}'\t"$7"\t"$8"\t"$9"\t"$10"\t"$11"\t"$12 }' $INSCRIPTIONS > ${INSCRIPTIONS}.mod
+awk -F'\t' '{ print $1"\t"$2"\t"$3"\t"$4"\t"$5"\t'${BALISE_TEMPS_VIDE}'\t"$7"\t"$8"\t"$9"\t"$10"\t"$11"\t"$12 }' $INSCRIPTIONS > ${INSCRIPTIONS}.buf
 
-nb_inscrs=`wc -l ${INSCRIPTIONS} | awk '{ print $1 }'`
-#une ligne d'entête à soustraire
-inscrits=$(($nb_inscrs-1))
+tail -n +2 ${INSCRIPTIONS}.buf > ${INSCRIPTIONS}.mod
+#rm -f ${INSCRIPTIONS}.buf
+
+inscrits=`wc -l ${INSCRIPTIONS}.mod | awk '{ print $1 }'`
 
 echo ""
 echo "***"
