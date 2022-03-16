@@ -18,8 +18,6 @@ export SYNTHESE=${DOSSIER_CROSS}/${DOSSIER_URA}/synthese_uras
 export FICHIER_T0=${DOSSIER_CROSS}/t0.txt
 export FICHIER_POUR_FRANCK=${DOSSIER_CROSS}/resultats.txt
 
-#reglages 
+#reglages
 export BALISE_TEMPS_VIDE=__VIDE__
 export FICHIER_BEEP=bell.oga
-
-

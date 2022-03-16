@@ -5,13 +5,12 @@ set -u
 # shellcheck disable=SC1091
 source reglages || exit 1
 
-ping_ura()
-{
-    if ! ping -c1 -t1 "$IP_JADAK_URA" &> /dev/null ; then
-        echo "pas de ping vers $IP_JADAK_URA" >&2
-        return 1
-    fi
-    return 0
+ping_ura() {
+	if ! ping -c1 -t1 "$IP_JADAK_URA" &>/dev/null; then
+		echo "pas de ping vers $IP_JADAK_URA" >&2
+		return 1
+	fi
+	return 0
 }
 
 # ping_port()
@@ -26,12 +25,13 @@ ping_ura()
 #     fi
 # }
 
-verif_deps()
-{
-    for outil in nc nmap
-    do
-        { type "$outil" &> /dev/null ; } || { echo "manque $outil..." ; exit 1 ; } 
-    done
+verif_deps() {
+	for outil in nc nmap; do
+		{ type "$outil" &>/dev/null; } || {
+			echo "manque $outil..."
+			exit 1
+		}
+	done
 }
 
 #verification des logiciels necessaires
@@ -40,46 +40,44 @@ verif_deps
 index=1
 
 #reconnection au serveur et ecriture d'un nouveau fichier de donnees brutes
-while true
-do
-    while true
-    do
-        mkdir -p "${DOSSIER_URA}"     &> /dev/null || exit 1
-        mkdir -p "${DOSSIER_URA}".err &> /dev/null || exit 1
-        
-        fichier_brut_courant="${DOSSIER_URA}/ura.${index}"
-        fichier_erreur_courant="${DOSSIER_URA}.err/ura.${index}.err"
-        
-        if [ -f "${fichier_brut_courant}" ] ; then
-            echo "${fichier_brut_courant} existe deja" ; index=$((index+1)) ;
-        else
-            break
-        fi
-    done
-                                                 
-    echo "(re) connection à URA -> $fichier_brut_courant"
+while true; do
+	while true; do
+		mkdir -p "${DOSSIER_URA}" &>/dev/null || exit 1
+		mkdir -p "${DOSSIER_URA}".err &>/dev/null || exit 1
 
-    while true
-    do
-        if ping_ura ; then break ; else sleep 1 ; fi
-    done
+		fichier_brut_courant="${DOSSIER_URA}/ura.${index}"
+		fichier_erreur_courant="${DOSSIER_URA}.err/ura.${index}.err"
 
-    # while true
-    # do
-    #     if ping_port; then break; else sleep 1 ; fi
-    # done
-    
-    nc "${IP_JADAK_URA}" "${PORT_URA}"  > "${fichier_brut_courant}" 2> "${fichier_erreur_courant}"
+		if [ -f "${fichier_brut_courant}" ]; then
+			echo "${fichier_brut_courant} existe deja"
+			index=$((index + 1))
+		else
+			break
+		fi
+	done
 
-    #taille des fichiers 
-    tr=$(stat -c "%s" "${fichier_brut_courant}")
-    terr=$(stat -c "%s" "${fichier_erreur_courant}")
+	echo "(re) connection à URA -> $fichier_brut_courant"
 
-    #efface les fichiers vides pour ne pas creer des tonnes de fichiers vides
-    if [ "$tr" == 0 ] && [ "$terr" == 0 ] ; then
-        rm -f "${fichier_brut_courant}" "${fichier_brut_courant}".err
-        sleep 1
-    else
-        index=$((index+1))
-    fi
+	while true; do
+		if ping_ura; then break; else sleep 1; fi
+	done
+
+	# while true
+	# do
+	#     if ping_port; then break; else sleep 1 ; fi
+	# done
+
+	nc "${IP_JADAK_URA}" "${PORT_URA}" >"${fichier_brut_courant}" 2>"${fichier_erreur_courant}"
+
+	#taille des fichiers
+	tr=$(stat -c "%s" "${fichier_brut_courant}")
+	terr=$(stat -c "%s" "${fichier_erreur_courant}")
+
+	#efface les fichiers vides pour ne pas creer des tonnes de fichiers vides
+	if [ "$tr" == 0 ] && [ "$terr" == 0 ]; then
+		rm -f "${fichier_brut_courant}" "${fichier_brut_courant}".err
+		sleep 1
+	else
+		index=$((index + 1))
+	fi
 done
