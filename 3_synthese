@@ -55,7 +55,7 @@ while true; do
 	while read -r ligne; do
 		RFID=$(echo "$ligne" | awk '{ print $1}')
 		TIME=$(echo "$ligne" | awk '{ print $2}')
-
+		if [ -z "$RFID" ] || [ -z "$TIME" ]; then continue; fi
 		t0=$(date -d "$T0" +%s)
 		tf=$(date -d "$TIME" +%s)
 		dt=$((tf - t0))
