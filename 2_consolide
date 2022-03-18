@@ -18,10 +18,13 @@ while true; do
 	nb_rfid=$(wc -l "${SYNTHESE}" | awk '{ print $1}')
 	#faire un bruit lorsque le nombre de RFID augmente
 	if [ "$nb_rfid" -gt "$nb_rfid_prev" ]; then
-		paplay "${FICHIER_BEEP}"
-		echo -n "X"
+		for ((i = 0; i < $((nb_rfid - nb_rfid_prev)); i++)); do
+			echo -n "X"
+			paplay "${FICHIER_BEEP}"
+			sleep 0.3
+		done
 		nb_rfid_prev=$nb_rfid
 	fi
 	echo -n "."
-	sleep 1
+	sleep 0.01
 done

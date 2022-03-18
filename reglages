@@ -8,7 +8,7 @@ export FICHIER_RFIDS_DOSSARDS=${DOSSIER_CROSS}/rfids_dossards
 
 #1_rfids
 export DOSSIER_URA=ura
-export IP_JADAK_URA=192.168.0.35
+export IP_JADAK_URA=192.168.0.1
 export PORT_URA=9055
 
 #2_filtre
@@ -21,3 +21,6 @@ export FICHIER_POUR_FRANCK=${DOSSIER_CROSS}/resultats.txt
 #reglages
 export BALISE_TEMPS_VIDE=__VIDE__
 export FICHIER_BEEP=bell.oga
+
+#temps en secondes a enlever pour effacer le temps entre l arrivee et le detecteur
+export DELTA_T=10

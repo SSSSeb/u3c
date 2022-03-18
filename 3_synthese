@@ -58,7 +58,7 @@ while true; do
 		if [ -z "$RFID" ] || [ -z "$TIME" ]; then continue; fi
 		t0=$(date -d "$T0" +%s)
 		tf=$(date -d "$TIME" +%s)
-		dt=$((tf - t0))
+		dt=$((tf - t0 - DELTA_T))
 		DTIME=$(date -d "0000-01-01 $dt seconds" +%T)
 
 		DOSSARD=${RFIDS_DOSSARDS[$RFID]}
