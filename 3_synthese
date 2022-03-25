@@ -69,5 +69,5 @@ while true; do
 	done <"${SYNTHESE}.snapshot" >>"${FICHIER_POUR_FRANCK}.tmp"
 	mv "${FICHIER_POUR_FRANCK}.tmp" "${FICHIER_POUR_FRANCK}"
 	echo -n "."
-	sleep 5
+	sleep 0.1
 done
