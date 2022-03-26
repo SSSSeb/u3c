@@ -61,15 +61,15 @@ echo .
 echo .
 tail -n +2 "$FICHIER_RFIDS_DOSSARDS" | tail -3
 
-echo ""
-echo ""
-echo "*** test du beep... appuyer sur ENTREE ***"
-echo ""
-echo ""
+# echo ""
+# echo ""
+# echo "*** test du beep... appuyer sur ENTREE ***"
+# echo ""
+# echo ""
 
-read -r
+# read -r
 
-paplay "${FICHIER_BEEP}" || exit 1
+# paplay "${FICHIER_BEEP}" || exit 1
 
 echo ""
 echo ""
