@@ -33,6 +33,8 @@ awk -F'\t' '{ print $1"\t"$2"\t"$3"\t"$4"\t"$5"\t'"${BALISE_TEMPS_VIDE}"'\t"$7"\
 
 tail -n +2 "${FICHIER_INSCRIPTIONS}".buf >"${FICHIER_INSCRIPTIONS}".mod
 rm -f "${FICHIER_INSCRIPTIONS}.buf"
+rm -f ./*.tmp "${FICHIER_POUR_FRANCK}"
+rm -f rfids.txt
 
 inscrits=$(wc -l "${FICHIER_INSCRIPTIONS}".mod | awk '{ print $1 }')
 
