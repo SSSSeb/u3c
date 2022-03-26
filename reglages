@@ -8,7 +8,7 @@ export FICHIER_RFIDS_DOSSARDS=${DOSSIER_CROSS}/rfids_dossards
 
 #1_rfids
 export DOSSIER_URA=ura
-export IP_JADAK_URA=192.168.0.1
+export IP_JADAK_URA=192.168.0.3
 export PORT_URA=9055
 
 #2_filtre
