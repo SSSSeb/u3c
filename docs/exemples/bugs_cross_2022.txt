@@ -1,0 +1,3 @@
+1 - perte du ping juste avant la course
+2 - deux coureurs qui bifurquent sur le 6 et prennent la premiere place du 11: il faut éditer le fichier .mod en live...
+3 - bug (race condition) entre script 2 et script 3 (voir photo smartphone seb avec le nom des fichiers posant probleme).
