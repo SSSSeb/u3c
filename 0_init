@@ -44,7 +44,9 @@ echo "*** $inscrits inscrit(s) dans $FICHIER_INSCRIPTIONS ..."
 echo "***"
 echo ""
 
-tail -n +2 "$FICHIER_INSCRIPTIONS" | head -3
+read -r
+
+tail -n +1 "$FICHIER_INSCRIPTIONS" | head -3
 echo .
 echo .
 tail -n +2 "$FICHIER_INSCRIPTIONS" | tail -3
