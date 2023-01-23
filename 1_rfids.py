@@ -42,7 +42,7 @@ for binary in ['ping','netcat']:
         print(f'{binary} found')
     else:
         print(f'{binary} not found')
-        exit
+        exit(1)
 
 index = 1
 
