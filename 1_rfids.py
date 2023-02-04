@@ -69,7 +69,7 @@ while True:
         print(".",end='',flush=True)
         time.sleep(1)
 
-    command = "ncat "+JADAK_IP+" "+JADAK_PORT+" >"+cur_file
+    command = "ncat "+JADAK_IP+" "+JADAK_PORT+" >"+str(cur_file)
 
     try:
         result = subprocess.run(command,check=True,shell=True)
