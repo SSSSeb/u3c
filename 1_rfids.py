@@ -37,7 +37,7 @@ def is_binary_exist(binary_name: str) -> bool:
         except subprocess.CalledProcessError:
             return False
 
-for binary in ['ping','netcat']:
+for binary in ['ping','ncat']:
     if is_binary_exist(binary):
         print(f'{binary} found')
     else:
@@ -69,6 +69,13 @@ while True:
         print(".",end='',flush=True)
         time.sleep(1)
 
-    args = [ "nc", JADAK_IP, JADAK_PORT ]
+    command = "ncat "+JADAK_IP+" "+JADAK_PORT+" >"+cur_file
 
-    subprocess.run()
+    try:
+        result = subprocess.run(command,check=True,shell=True)
+    except FileNotFoundError:
+         print(f"command {command} non trouvée...")
+         exit(1)
+    except subprocess.CalledProcessError as error:
+         print(f"problème pour lancer la commande de type ncat: {error} ")
+         time.sleep(1)
