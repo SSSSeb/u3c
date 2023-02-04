@@ -99,4 +99,4 @@ print("écriture du fichier de date dans", T0_FILE)
 with open(T0_FILE,"w") as fichier_t0:
     fichier_t0.write(t0)
 
-shutil.rmtree(URA_DIRECTORY)
+#shutil.rmtree(URA_DIRECTORY)
