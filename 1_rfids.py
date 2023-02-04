@@ -52,7 +52,7 @@ while True:
         path.mkdir(parents=True, exist_ok=True)
         path = Path(URA_DIRECTORY+".err")
         path.mkdir(parents=True, exist_ok=True)
-        cur_file = Path(URA_DIRECTORY + "/ura." + str(index))
+        cur_file = Path(URA_DIRECTORY + "/ura." + str(index) + ".txt")
         cur_err_file = Path(URA_DIRECTORY + ".err/ura." + str(index) + ".err")
         if cur_file.exists():
             print(Path +" already exists...")
