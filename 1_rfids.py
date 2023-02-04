@@ -55,7 +55,7 @@ while True:
         cur_file = Path(URA_DIRECTORY + "/ura." + str(index) + ".txt")
         cur_err_file = Path(URA_DIRECTORY + ".err/ura." + str(index) + ".err")
         if cur_file.exists():
-            print(path +" already exists...")
+            print(str(path) +" already exists...")
             index = index + 1
         else:
              break
