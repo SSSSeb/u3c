@@ -6,3 +6,5 @@ set U3C_URA_DIR=.\U3C_URA_DIR
 set U3C_T0_FILE=.\t0_file.txt
 set U3C_JADAK_IP="localhost"
 set U3C_JADAK_PORT=9055
+python.exe 0_init.py
+python.exe 1_rfids.py
