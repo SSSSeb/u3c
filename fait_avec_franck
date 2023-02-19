@@ -5,3 +5,28 @@
 - tous les downloads dans "Logiciels pour Seb..."
 
 - lancer ncat.exe de python avec le jadak démarré...
+
+- brancher décodeur/reader  sur port USB gauche du PC de Franck
+
+- windows -> rechercher -> uni -> universal reader assistant
+
+page1:
+port serie: garder valeur par défaut (Next)
+page2:
+  Region: NA2
+  Antenne à cocher
+  Protocole Gen2 coché
+  Next
+  Connecter
+
+ouvrir Data Extensions:
+cocher enable data extensions: stream to TCP port 9055
+
+
+Appuyer bouton READ... -> bouton VERT.
+
+aller dans
+
+PowerShell (non CMD est mieux... puor les paths de ping et ncat)... et ouvrir le dossier
+Users/frlid/Documents/GitHub/u3c
+lancer le fichier .bat
