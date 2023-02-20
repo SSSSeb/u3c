@@ -7,7 +7,7 @@ import time
 from pathlib import Path
 
 URA_DIRECTORY = Path(os.environ["U3C_URA_DIR"])
-FICHIER_RFIDS_DOSSARDS = Path(os.environ["U3C_RFIDS_FILES"])
+FICHIER_RFIDS_DOSSARDS = Path(os.environ["U3C_RFIDS_FILE"])
 
 
 nb_rfid_prev=0
