@@ -13,7 +13,7 @@ JADAK_PORT = os.environ["U3C_JADAK_PORT"]
 
 def is_port_open(ip, port):
     s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-    timeout = 1
+    timeout = 3
     s.settimeout(timeout)
     try:
         s.connect((ip, int(port)))
