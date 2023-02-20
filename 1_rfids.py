@@ -67,12 +67,17 @@ while True:
         path.mkdir(parents=True, exist_ok=True)
         cur_file = Path(URA_DIRECTORY + "/ura." + str(index) + ".txt")
         cur_err_file = Path(URA_DIRECTORY + ".err/ura." + str(index) + ".err")
-        if cur_file.exists() and os.path.getsize(cur_file) != 0:
-            # le fichier existe déjà mais il est vide, on le recycle
-            index = index + 1
+        if cur_file.exists():
+            if os.path.getsize(cur_file) != 0:
+                # le fichier existe déjà mais il contient des données
+                # on prend le suivant
+                index = index + 1
+            else:
+                # le fichier existe mais est vide on le recycle
+                print("recycling file " + str(cur_file)))
+                break
         else:
             break
-
 
     print("(re) connection à URA ->" + str(cur_file))
     print("connection vers " + JADAK_IP + ":" + JADAK_PORT)
