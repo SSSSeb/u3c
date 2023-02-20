@@ -59,6 +59,7 @@ for binary in ["ping", "ncat"]:
 index = 1
 
 while True:
+
     while True:
         path = Path(URA_DIRECTORY)
         path.mkdir(parents=True, exist_ok=True)
@@ -66,8 +67,8 @@ while True:
         path.mkdir(parents=True, exist_ok=True)
         cur_file = Path(URA_DIRECTORY + "/ura." + str(index) + ".txt")
         cur_err_file = Path(URA_DIRECTORY + ".err/ura." + str(index) + ".err")
-        if cur_file.exists():
-            # print(path.__str__ +" already exists...")
+        if cur_file.exists() and os.path.getsize(cur_file) != 0:
+            # le fichier existe déjà mais il est vide, on le recycle
             index = index + 1
         else:
             break
