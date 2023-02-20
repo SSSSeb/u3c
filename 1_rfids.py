@@ -79,8 +79,8 @@ while True:
         else:
             break
 
-    print("(re) connection à URA ->" + str(cur_file))
-    print("connection vers " + JADAK_IP + ":" + JADAK_PORT)
+    print("(re)connection et écriture dans ->" + str(cur_file))
+    print("connection @ " + JADAK_IP + ":" + JADAK_PORT)
     while True:
         if is_port_open(JADAK_IP, JADAK_PORT):
             print("service JADAK semble dispo...")
