@@ -74,7 +74,7 @@ while True:
                 index = index + 1
             else:
                 # le fichier existe mais est vide on le recycle
-                print("recycling file " + str(cur_file)))
+                print("recycling file " + str(cur_file))
                 break
         else:
             break
