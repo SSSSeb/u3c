@@ -17,11 +17,11 @@ if not URA_DIRECTORY.exists() or not URA_DIRECTORY.is_dir():
     exit(1)
 
 with open(FICHIER_RFIDS_DOSSARDS,'r') as file:
-    rfids = []
+    rfids_doss = []
     for line in file:
         line = line.strip()
         line_fields = line.split(' ')
-        rfids.append(line_fields[0])
+        rfids_doss.append(line_fields)
 
 nb_rfids_total=len(rfids)
-print(f"{nb_rfids_total} dans le fichier de RFIDS")
+print(f"{nb_rfids_total} entrées dans le fichier de RFIDS/DOSSARDS")
