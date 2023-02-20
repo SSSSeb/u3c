@@ -23,5 +23,5 @@ with open(FICHIER_RFIDS_DOSSARDS,'r') as file:
         line_fields = line.split(' ')
         rfids.append(line_fields[0])
 
-nb_rfids_total=rfids.__len__
+nb_rfids_total=len(rfids)
 print(f"{nb_rfids_total} dans le fichier de RFIDS")
