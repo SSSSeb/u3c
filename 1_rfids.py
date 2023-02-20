@@ -17,7 +17,8 @@ def is_port_open(ip, port):
     s.settimeout(timeout)
     try:
         s.connect((ip, int(port)))
-    except:
+    except Exception as e:
+        print(e)
         return False
     s.shutdown(socket.SHUT_RDWR)
     s.close()
