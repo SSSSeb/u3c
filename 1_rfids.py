@@ -65,8 +65,9 @@ while True:
         path.mkdir(parents=True, exist_ok=True)
         path = Path(URA_DIRECTORY + ".err")
         path.mkdir(parents=True, exist_ok=True)
-        cur_file = Path(URA_DIRECTORY + "/ura." + str(index) + ".txt")
-        cur_err_file = Path(URA_DIRECTORY + ".err/ura." + str(index) + ".err")
+        padded = "{:03d}".format(index)
+        cur_file = Path(URA_DIRECTORY + "/ura." + padded + ".txt")
+        cur_err_file = Path(URA_DIRECTORY + ".err/ura." + padded + ".err")
         if cur_file.exists():
             if os.path.getsize(cur_file) != 0:
                 # le fichier existe déjà mais il contient des données
