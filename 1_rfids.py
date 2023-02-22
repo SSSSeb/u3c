@@ -24,6 +24,7 @@ def is_port_open(ip, port):
     s.close()
     return True
 
+
 def is_binary_exist(binary_name: str) -> bool:
     if platform.system() == "Windows":
         try:
@@ -59,7 +60,6 @@ for binary in ["ping", "ncat"]:
 index = 1
 
 while True:
-
     while True:
         path = Path(URA_DIRECTORY)
         path.mkdir(parents=True, exist_ok=True)
@@ -89,7 +89,14 @@ while True:
         print(".", end="", flush=True)
         time.sleep(1)
 
-    command = "ncat " + JADAK_IP + " " + JADAK_PORT + ' | findstr /v "Connection Accepted" >' + str(cur_file)
+    command = (
+        "ncat "
+        + JADAK_IP
+        + " "
+        + JADAK_PORT
+        + ' | findstr /v "Connection Accepted" >'
+        + str(cur_file)
+    )
 
     try:
         result = subprocess.run(command, check=True, shell=True)
