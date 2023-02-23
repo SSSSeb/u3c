@@ -64,7 +64,8 @@ while True:
                             item = (rfid, timing)
                             list.append(item)
                             synthese_tmp.write(rfid + " " + timing + "\n")
-    os.remove(SYNTHESE)
+    if os.path.exists(SYNTHESE):
+        os.remove(SYNTHESE)
     os.rename(SYNTHESE_TEMPO, SYNTHESE)
     nb_rfids = len(list)
     # print(list)
