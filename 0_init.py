@@ -17,6 +17,7 @@ for fichier in [INSCR_FILE, RFID_FILE]:
         print("fichier manquant:", fichier)
         exit(1)
 
+
 with open(INSCR_FILE, "r") as inscriptions:
     # for line in inscriptions:
     #    print(line)
