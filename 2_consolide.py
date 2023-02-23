@@ -54,13 +54,13 @@ while True:
                     line = line.strip()
                     line_fields = line.split()
                     rfid_cand = line_fields[0]
-                    timing = line_fields[1]
                     if rfid_cand not in seen:
                         # print("not seen "+rfid_cand)
                         seen.add(rfid_cand)
                         rfid = rfid_cand
                         if re.match(rfids_pattern, rfid):
                             # print(f"go {rfid} {timing} \n")
+                            timing = line_fields[1]
                             item = (rfid, timing)
                             list.append(item)
                             synthese_tmp.write(rfid + " " + timing + "\n")
