@@ -94,7 +94,7 @@ while True:
         + JADAK_IP
         + " "
         + JADAK_PORT
-        + ' | findstr /v "Connection Accepted" >'
+        + '>'
         + str(cur_file)
     )
 
