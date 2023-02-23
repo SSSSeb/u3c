@@ -57,8 +57,8 @@ while True:
                     if rfid_cand not in seen:
                         # print("not seen "+rfid_cand)
                         seen.add(rfid_cand)
-                        rfid = rfid_cand
-                        if re.match(rfids_pattern, rfid):
+                        if re.match(rfids_pattern, rfid_cand):
+                            rfid = rfid_cand
                             # print(f"go {rfid} {timing} \n")
                             timing = line_fields[1]
                             item = (rfid, timing)
