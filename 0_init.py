@@ -5,7 +5,6 @@ from playsound import playsound
 
 INSCR_FILE = os.environ["U3C_INSCRIPTIONS"]
 RFID_FILE = os.environ["U3C_RFIDS_FILE"]
-NO_TIMING_TAG = os.environ["U3C_NO_TIMING"]
 BEEP_FILE = os.environ["U3C_BEEP_FILE"]
 T0_FILE = os.environ["U3C_T0_FILE"]
 URA_DIRECTORY = os.environ["U3C_URA_DIR"]
