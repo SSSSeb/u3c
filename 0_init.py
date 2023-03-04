@@ -93,13 +93,15 @@ print("")
 
 maintenant = datetime.now()
 
-print("t0: démarrage de la course @",maintenant.strftime("%H:%M:%S"))
+print("t0: démarrage de la course @", maintenant.strftime("%H:%M:%S"))
 print("écriture du fichier de date dans", T0_FILE)
 
 with open(T0_FILE, "w") as fichier_t0:
-    fichier_t0.write(maintenant.strftime("%H:%M:%S")+"\n")
+    fichier_t0.write(maintenant.strftime("%H:%M:%S") + "\n")
 
-reponse = input(f"ATTENTION, CONFIRMER PAR 'oui' POUR EFFACEMENT DE {URA_DIRECTORY} ? (oui/NON)")
+reponse = input(
+    f"ATTENTION, CONFIRMER PAR 'oui' POUR EFFACEMENT DE {URA_DIRECTORY} ? (oui/NON)"
+)
 
 if reponse == "oui":
     shutil.rmtree(URA_DIRECTORY, ignore_errors=True)
