@@ -26,7 +26,7 @@ with open(INSCR_FILE, "r") as inscriptions:
 coureurs = []
 
 for line in lignes:
-    coureurs.append(line.split() + [NO_TIMING_TAG])
+    coureurs.append(line.split())
 
 nb_runners = len(coureurs)
 
@@ -91,13 +91,17 @@ ignore = input("*** appuyer sur Entree pour démarrer la course...")
 print("***")
 print("")
 
-now = datetime.now()
-t0 = now.strftime("%H:%M:%S")
+maintenant = datetime.now()
 
-print("démarrage de la course @", t0)
+print("t0: démarrage de la course @",maintenant.strftime("%H:%M:%S"))
 print("écriture du fichier de date dans", T0_FILE)
 
 with open(T0_FILE, "w") as fichier_t0:
-    fichier_t0.write(t0)
+    fichier_t0.write(maintenant.strftime("%H:%M:%S")+"\n")
 
-shutil.rmtree(URA_DIRECTORY, ignore_errors=True)
+reponse = input(f"ATTENTION, CONFIRMER PAR 'oui' POUR EFFACEMENT DE {URA_DIRECTORY} ? (oui/NON)")
+
+if reponse == "oui":
+    shutil.rmtree(URA_DIRECTORY, ignore_errors=True)
+else:
+    print("repertoire non effacé, course en cours ?")

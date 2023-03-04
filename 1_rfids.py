@@ -65,7 +65,7 @@ while True:
         path.mkdir(parents=True, exist_ok=True)
         path = Path(URA_DIRECTORY + ".err")
         path.mkdir(parents=True, exist_ok=True)
-        padded = "{:03d}".format(index)
+        padded = "{:06d}".format(index)
         cur_file = Path(URA_DIRECTORY + "/ura." + padded + ".txt")
         cur_err_file = Path(URA_DIRECTORY + ".err/ura." + padded + ".err")
         if cur_file.exists():
