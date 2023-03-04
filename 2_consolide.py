@@ -8,7 +8,7 @@ from playsound import playsound
 
 URA_DIRECTORY = Path(os.environ["U3C_URA_DIR"])
 FICHIER_RFIDS_DOSSARDS = Path(os.environ["U3C_RFIDS_FILE"])
-SYNTHESE_PREFIX = "Pour_Franck"
+SYNTHESE_PREFIX = "pour_Franck"
 SYNTHESE_TEMPO = Path("pour_Franck.tmp.txt")
 BEEP_FILE = os.environ["U3C_BEEP_FILE"]
 INSCR_FILE = os.environ["U3C_INSCRIPTIONS"]
@@ -117,8 +117,8 @@ cur_dossards_vus = ""
 cur_doss_vus = set()
 
 while nb_rfids_vus < nb_rfids_inscrits:
+
     nb_rfids_vus = 0
-    # bof, les rfids vus doivent-ils vraiment être recalculés de zéro à chaque itération ?
     seen = set()
     ordered_files = sorted(glob.glob(str(URA_DIRECTORY) + "/ura.??????.txt"))
     # print(sorted_files)
