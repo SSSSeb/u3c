@@ -1,5 +1,6 @@
 import os
 import shutil
+import commun
 from datetime import datetime
 from playsound import playsound
 
@@ -16,6 +17,7 @@ for fichier in [INSCR_FILE, RFID_FILE]:
         print("fichier manquant:", fichier)
         exit(1)
 
+commun.verif_inscriptions_rfid()
 
 with open(INSCR_FILE, "r") as inscriptions:
     # for line in inscriptions:
