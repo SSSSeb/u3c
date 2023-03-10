@@ -107,6 +107,7 @@ reponse = input(
 )
 
 if reponse == "oui":
+    # if directory can not be deleted ... you should warn instead...
     shutil.rmtree(URA_DIRECTORY, ignore_errors=True)
     shutil.rmtree(RES_DIRECTORY, ignore_errors=True)
 else:
