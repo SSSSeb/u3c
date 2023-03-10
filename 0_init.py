@@ -93,7 +93,7 @@ maintenant = datetime.now()
 
 print("")
 print("***")
-print("*** t0: démarrage de la course à: ", maintenant.strftime("%I:%M:%S"))
+print("*** t0: démarrage de la course à: ", maintenant.strftime("%H:%M:%S"))
 print("***")
 print("écriture du fichier de date dans", T0_FILE,"\n")
 
