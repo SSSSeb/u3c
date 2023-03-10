@@ -98,7 +98,7 @@ print("***")
 print("écriture du fichier de date dans", T0_FILE,"\n")
 
 with open(T0_FILE, "w") as fichier_t0:
-    fichier_t0.write(str(maintenant))
+    fichier_t0.write(maintenant.strftime("%Y-%m-%d %H:%M:%S.%f"))
 
 print("\n")
 print("*** \n")
