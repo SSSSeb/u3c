@@ -86,9 +86,16 @@ while nb_rfids_vus < nb_rfids_inscrits:
                             # print(f"arrivée de {coureurs[cur_dos]['nom']}")
                             tf = datetime.strptime(cur_temps, "%H:%M:%S.%f")
                             delta = tf - t0
-                            out_delta = delta.strftime("%H:%M:%S")
+                            total_seconds = delta.total_seconds()
+                            # convert the total seconds to hours, minutes, and seconds
+                            hours, remainder = divmod(total_seconds, 3600)
+                            minutes, seconds = divmod(remainder, 60)
+
+                            # format the hours, minutes, and seconds as a string in the format "%H:%M:%S"
+                            formatted_delta = "{:02d}:{:02d}:{:02d}".format(int(hours), int(minutes), int(seconds))
+
                             synthese_tmp_f.write(
-                                f"{cur_cour['nom']}\t{cur_cour['prénom']}\t{cur_cour['genre']}\t{cur_cour['date_de_naissance']}\t{cur_dos}\t{out_delta}\t{cur_cour['cross']}\t{cur_cour['km']}\t{cur_cour['village']}\t{cur_cour['email']}\t{cur_cour['club']}\t{cur_cour['license']}\n"
+                                f"{cur_cour['nom']}\t{cur_cour['prénom']}\t{cur_cour['genre']}\t{cur_cour['date_de_naissance']}\t{cur_dos}\t{formatted_delta}\t{cur_cour['cross']}\t{cur_cour['km']}\t{cur_cour['village']}\t{cur_cour['email']}\t{cur_cour['club']}\t{cur_cour['license']}\n"
                             )
                             nb_rfids_vus = nb_rfids_vus + 1
                             if cur_dos not in cur_doss_vus:
