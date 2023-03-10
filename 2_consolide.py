@@ -105,8 +105,8 @@ while nb_rfids_vus < nb_rfids_inscrits:
         cur_dossards_vus = ""
         for i in range(nb_rfids_vus - nb_rfids_deja_imprimes):
             # print("X", end="", flush=True)
-            playsound(BEEP_FILE, block=True)
-            time.sleep(0.02)
+            playsound(BEEP_FILE, block=False)
+            time.sleep(0.05)
         nb_rfids_deja_imprimes = nb_rfids_vus
     print(".", end="", flush=True)
     time.sleep(0.01)
