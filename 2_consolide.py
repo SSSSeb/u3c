@@ -84,7 +84,7 @@ while nb_rfids_vus < nb_rfids_inscrits:
                             # print(cur)
                             # print(f"arrivée du dossard {cur_dos}")
                             # print(f"arrivée de {coureurs[cur_dos]['nom']}")
-                            tf = datetime.strptime(cur_temps, "%H:%M:%S.%f")
+                            tf = datetime.strptime(cur_temps, "%H:%M:%S")
                             delta = tf - t0
                             synthese_tmp_f.write(
                                 f"{cur_cour['nom']}\t{cur_cour['prénom']}\t{cur_cour['genre']}\t{cur_cour['date_de_naissance']}\t{cur_dos}\t{delta}\t{cur_cour['cross']}\t{cur_cour['km']}\t{cur_cour['village']}\t{cur_cour['email']}\t{cur_cour['club']}\t{cur_cour['license']}\n"
