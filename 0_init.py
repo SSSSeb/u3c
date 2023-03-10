@@ -86,20 +86,21 @@ print("*** appuyer sur ENTREE au démarrage de la course")
 print("*** ceci effacera les fichiers de précédentes courses dans", URA_DIRECTORY)
 print("*** et consigne l'heure exacte du démarrage dans le fichier", T0_FILE)
 
-print("")
-print("***")
 ignore = input("*** appuyer sur Entree pour démarrer la course...")
-print("***")
-print("")
 
 maintenant = datetime.now()
 
-print("t0: démarrage de la course @", maintenant.strftime("%H:%M:%S"))
-print("écriture du fichier de date dans", T0_FILE)
+print("")
+print("***")
+print("*** t0: démarrage de la course à: ", maintenant.strftime("%H:%M:%S"))
+print("***")
+print("écriture du fichier de date dans", T0_FILE,"\n")
 
 with open(T0_FILE, "w") as fichier_t0:
     fichier_t0.write(maintenant.strftime("%H:%M:%S") + "\n")
 
+print("\n")
+print("*** \n")
 reponse = input(
     f"ATTENTION, CONFIRMER PAR 'oui' POUR EFFACEMENT DE {URA_DIRECTORY} ? (oui/NON)"
 )
@@ -107,4 +108,4 @@ reponse = input(
 if reponse == "oui":
     shutil.rmtree(URA_DIRECTORY, ignore_errors=True)
 else:
-    print("repertoire non effacé, course en cours ?")
+    print("\n\n*** repertoire NON EFFACE... course déjà en cours ?")
