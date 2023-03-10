@@ -14,7 +14,8 @@ def verif_inscriptions_rfid():
     with open(INSCR_FILE, "r") as inscriptions_file:
         # for line in inscriptions:
         #    print(line)
-        inscriptions = inscriptions_file.readlines()
+        # sauter la premiere ligne pour Franck
+        inscriptions = inscriptions_file.readlines()[1:]
         # DUPONT JEAN-CHRISTOPHE H       1959    691             CROSS LONG      10      POISAT  toto@voila.fr  RIA Champagnier
 
     coureurs = {}
