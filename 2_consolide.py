@@ -91,10 +91,13 @@ while nb_rfids_vus < nb_rfids_inscrits:
                                 )
                                 cur_doss_vus.add(cur_dos)
 
-    # if os.path.exists(SYNTHESE):
-    #    os.remove(SYNTHESE)
     if nb_rfids_vus > nb_rfids_deja_imprimes:
-        os.replace(SYNTHESE_TEMPO, Path(SYNTHESE_PREFIX + str(nb_rfids_vus) + ".txt"))
+        dest_f_idx = Path(SYNTHESE_PREFIX + str(nb_rfids_vus) + ".txt")
+        dest_f = Path(SYNTHESE_PREFIX + "_cur" + ".txt")
+        os.replace(SYNTHESE_TEMPO, dest_f_idx)
+        if os.path.exists(dest_f):
+            os.remove(dest_f)
+        os.symlink(dest_f_idx, dest_f, target_is_directory=False)
         # print(nb_rfids)
         # print(f"{nb_rfids-nb_rfids_found} beeps...")
         print(cur_dossards_vus, end="", flush=True)
