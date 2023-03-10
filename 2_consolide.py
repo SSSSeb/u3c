@@ -9,9 +9,11 @@ from pathlib import Path
 from playsound import playsound
 
 URA_DIRECTORY = Path(os.environ["U3C_URA_DIR"])
+RES_DIRECTORY = Path(os.environ["U3C_RES_DIR"])
 
-SYNTHESE_PREFIX = "pour_Franck"
-SYNTHESE_TEMPO = Path("pour_Franck.tmp.txt")
+SYNTHESE_PREFIX = os.environ["U3C_RES_DIR"]+"/pour_Franck"
+SYNTHESE_TEMPO = os.environ["U3C_RES_DIR"]+"/pour_Franck.tmp.txt"
+
 BEEP_FILE = os.environ["U3C_BEEP_FILE"]
 
 T0_FILE = os.environ["U3C_T0_FILE"]
@@ -24,6 +26,9 @@ nb_rfid_prev = 0
 if not URA_DIRECTORY.exists() or not URA_DIRECTORY.is_dir():
     print(f"le dossier {URA_DIRECTORY} n'existe pas ou n'est pas un répertoire")
     exit(1)
+
+path = Path(RES_DIRECTORY)
+path.mkdir(parents=True, exist_ok=True)
 
 rfids2doss,nb_rfids_inscrits,rfids_inscrits,coureurs = commun.verif_inscriptions_rfid()
 

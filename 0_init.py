@@ -9,6 +9,7 @@ RFID_FILE = os.environ["U3C_RFIDS_FILE"]
 BEEP_FILE = os.environ["U3C_BEEP_FILE"]
 T0_FILE = os.environ["U3C_T0_FILE"]
 URA_DIRECTORY = os.environ["U3C_URA_DIR"]
+RES_DIRECTORY = os.environ["U3C_RES_DIR"]
 
 # test necessary files exist
 
@@ -107,5 +108,6 @@ reponse = input(
 
 if reponse == "oui":
     shutil.rmtree(URA_DIRECTORY, ignore_errors=True)
+    shutil.rmtree(RES_DIRECTORY, ignore_errors=True)
 else:
     print("\n\n*** repertoire NON EFFACE... course déjà en cours ?")
