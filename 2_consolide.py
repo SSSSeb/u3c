@@ -38,7 +38,7 @@ with open(T0_FILE, "r") as f:
     t0val = f.read().strip()
 
 try:
-    t0 = datetime.strptime(t0val, "%Y-%m-%d %H:%M:%S.%f")
+    t0 = datetime.strptime(t0val, "%H:%M:%S")
 except ValueError:
     print(f"impossible de convertir l'horaire de départ du CROSS à partir de {T0_FILE}")
     exit(1)
