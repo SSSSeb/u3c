@@ -84,10 +84,11 @@ while nb_rfids_vus < nb_rfids_inscrits:
                             # print(cur)
                             # print(f"arrivée du dossard {cur_dos}")
                             # print(f"arrivée de {coureurs[cur_dos]['nom']}")
-                            tf = datetime.strptime(cur_temps, "%H:%M:%S")
+                            tf = datetime.strptime(cur_temps, "%H:%M:%S.%f")
                             delta = tf - t0
+                            out_delta = delta.strftime("%H:%M:%S")
                             synthese_tmp_f.write(
-                                f"{cur_cour['nom']}\t{cur_cour['prénom']}\t{cur_cour['genre']}\t{cur_cour['date_de_naissance']}\t{cur_dos}\t{delta}\t{cur_cour['cross']}\t{cur_cour['km']}\t{cur_cour['village']}\t{cur_cour['email']}\t{cur_cour['club']}\t{cur_cour['license']}\n"
+                                f"{cur_cour['nom']}\t{cur_cour['prénom']}\t{cur_cour['genre']}\t{cur_cour['date_de_naissance']}\t{cur_dos}\t{out_delta}\t{cur_cour['cross']}\t{cur_cour['km']}\t{cur_cour['village']}\t{cur_cour['email']}\t{cur_cour['club']}\t{cur_cour['license']}\n"
                             )
                             nb_rfids_vus = nb_rfids_vus + 1
                             if cur_dos not in cur_doss_vus:
