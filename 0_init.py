@@ -81,8 +81,8 @@ reponse = input("appuyer sur Entree pour tester le son (ou 'N' pour ne pas le fa
 if reponse != "N":
     pause_time=0.03
     for i in range(0,5):
-        playsound(BEEP_FILE, block: True)
-        time.sleep(pause_time)
+        #playsound(BEEP_FILE, block: True)
+        #time.sleep(pause_time)
     for i in range(0,5):
         playsound(BEEP_FILE, block: False)
         time.sleep(pause_time)
