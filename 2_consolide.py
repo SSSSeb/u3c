@@ -1,12 +1,10 @@
 import os
+from pathlib import Path
 import time
 import glob
 import commun
 
 from datetime import datetime
-
-from pathlib import Path
-from playsound import playsound
 
 URA_DIRECTORY = Path(os.environ["U3C_URA_DIR"])
 RES_DIRECTORY = Path(os.environ["U3C_RES_DIR"])
@@ -14,7 +12,7 @@ RES_DIRECTORY = Path(os.environ["U3C_RES_DIR"])
 SYNTHESE_PREFIX = os.environ["U3C_RES_DIR"]+"/pour_Franck"
 SYNTHESE_TEMPO = os.environ["U3C_RES_DIR"]+"/pour_Franck.tmp.txt"
 
-BEEP_FILE = os.environ["U3C_BEEP_FILE"]
+
 
 T0_FILE = os.environ["U3C_T0_FILE"]
 # prise en compte des 10 secondes environ de délais entre le vrai timing
@@ -42,6 +40,8 @@ try:
 except ValueError:
     print(f"impossible de convertir l'horaire de départ du CROSS à partir de {T0_FILE}")
     exit(1)
+
+b=commun.initialise_beep()
 
 print(f"t0={t0}")
 # en admettant que tout le monde passe la ligne cette boucle s'arrètera toute seule
@@ -117,9 +117,7 @@ while nb_rfids_vus < nb_rfids_inscrits:
         print(f"#{nb_rfids_vus}", end="", flush=True)
         cur_dossards_vus = ""
         for i in range(nb_rfids_vus - nb_rfids_deja_imprimes):
-            # print("X", end="", flush=True)
-            # playsound(BEEP_FILE)
-            time.sleep(0.3)
+            commun.beep(b,100)
         nb_rfids_deja_imprimes = nb_rfids_vus
     print(".", end="", flush=True)
     time.sleep(0.01)

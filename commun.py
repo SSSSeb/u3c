@@ -1,5 +1,8 @@
 import os
+import pygame
+
 from pathlib import Path
+
 
 def verif_inscriptions_rfid():
 
@@ -82,3 +85,12 @@ def verif_inscriptions_rfid():
         exit(1)
 
     return rfids2doss,nb_rfids_inscrits,rfids_inscrits,coureurs
+
+def initialise_beep() -> pygame.mixer.Sound:
+    pygame.mixer.init()
+    return pygame.mixer.Sound(os.environ["U3C_BEEP_FILE"])
+
+def beep(mon_beep: pygame.mixer.Sound, délais: int) -> None:
+    mon_beep.play()
+    pygame.time.delay(délais)
+    mon_beep.stop()

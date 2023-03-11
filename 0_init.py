@@ -3,7 +3,6 @@ import shutil
 import commun
 import time
 from datetime import datetime
-from playsound import playsound
 
 INSCR_FILE = os.environ["U3C_INSCRIPTIONS"]
 RFID_FILE = os.environ["U3C_RFIDS_FILE"]
@@ -77,16 +76,17 @@ print("*** test du beep")
 print("***")
 print("")
 
+b=commun.initialise_beep()
+
 reponse = input("appuyer sur Entree pour tester le son (ou 'N' pour ne pas le faire)")
 if reponse != "N":
-    pause_time=0.03
     for i in range(0,5):
-        playsound(BEEP_FILE, block=True)
-        time.sleep(pause_time)
+        print(f"#{i}",end="",flush=True)
+        commun.beep(b,300)
     for i in range(0,5):
-        playsound(BEEP_FILE, block=False)
-        time.sleep(pause_time)
-    print("test du son (10 bips en rafale) terminé")
+        print(f"#{i}",end="",flush=True)
+        commun.beep(b,100)
+    print("test du son (10 bips en rafale, deux vitesses...) terminé")
 
 print("")
 print("*** appuyer sur ENTREE au démarrage de la course")
