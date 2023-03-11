@@ -80,13 +80,14 @@ b=commun.initialise_beep()
 
 reponse = input("appuyer sur Entree pour tester le son (ou 'N' pour ne pas le faire)")
 if reponse != "N":
-    for i in range(0,5):
+    bips = 3
+    for i in range(0,bips):
         print(f"#{i}",end="",flush=True)
         commun.beep(b,300)
-    for i in range(0,5):
+    for i in range(0,bips):
         print(f"#{i}",end="",flush=True)
         commun.beep(b,100)
-    print("test du son (10 bips en rafale, deux vitesses...) terminé")
+    print(f"test du son ({bips*2} bips en rafale, deux vitesses...) terminé")
 
 print("")
 print("*** appuyer sur ENTREE au démarrage de la course")
@@ -99,12 +100,12 @@ maintenant = datetime.now()
 
 print("")
 print("***")
-print("*** t0: démarrage de la course à: ", maintenant.strftime("%H:%M:%S"))
+print("*** t0: démarrage de la course à: ", maintenant.strftime("%I:%M:%S"))
 print("***")
 print("écriture du fichier de date dans", T0_FILE,"\n")
 
 with open(T0_FILE, "w") as fichier_t0:
-    fichier_t0.write(maintenant.strftime("%H:%M:%S") + "\n")
+    fichier_t0.write(maintenant.strftime("%I:%M:%S") + "\n")
 
 print("\n")
 print("*** \n")
