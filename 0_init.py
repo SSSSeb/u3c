@@ -1,6 +1,7 @@
 import os
 import shutil
 import commun
+import time
 from datetime import datetime
 from playsound import playsound
 
@@ -76,11 +77,12 @@ print("*** test du beep")
 print("***")
 print("")
 
-ignore = input("appuyer sur Entree pour tester le beep")
-
-playsound(BEEP_FILE)
-
-print("voilà, normalement le beep a été émis...")
+reponse = input("appuyer sur Entree pour tester le son (ou 'N' pour ne pas le faire)")
+if reponse != "N":
+    for i in range(0,10):
+        playsound(BEEP_FILE)
+        time.sleep(0.05)
+    print("test du son (10 bips en rafale) terminé")
 
 print("")
 print("*** appuyer sur ENTREE au démarrage de la course")
