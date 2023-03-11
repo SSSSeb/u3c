@@ -82,7 +82,7 @@ if reponse != "N":
     pause_time=0.03
     for i in range(0,5):
         #playsound(BEEP_FILE, block: True)
-        #time.sleep(pause_time)
+        time.sleep(pause_time)
     for i in range(0,5):
         playsound(BEEP_FILE, block: False)
         time.sleep(pause_time)
