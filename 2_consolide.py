@@ -4,7 +4,7 @@ import time
 import glob
 import commun
 
-from datetime import datetime
+from datetime import datetime,timedelta
 
 URA_DIRECTORY = Path(os.environ["U3C_URA_DIR"])
 RES_DIRECTORY = Path(os.environ["U3C_RES_DIR"])
@@ -36,10 +36,13 @@ with open(T0_FILE, "r") as f:
     t0val = f.read().strip()
 
 try:
-    t0 = datetime.strptime(t0val, "%H:%M:%S")
+    t0 = datetime.strptime(t0val, "%I:%M:%S")
 except ValueError:
     print(f"impossible de convertir l'horaire de départ du CROSS à partir de {T0_FILE}")
     exit(1)
+
+today = datetime.today().date()
+t0 = datetime.combine(today,t0.time())
 
 b=commun.initialise_beep()
 
@@ -50,6 +53,8 @@ print(f"t0={t0}")
 nb_rfids_deja_imprimes = 0
 cur_dossards_vus = ""
 cur_doss_vus = set()
+
+warn_print=0
 
 while nb_rfids_vus < nb_rfids_inscrits:
 
@@ -85,6 +90,15 @@ while nb_rfids_vus < nb_rfids_inscrits:
                             # print(f"arrivée du dossard {cur_dos}")
                             # print(f"arrivée de {coureurs[cur_dos]['nom']}")
                             tf = datetime.strptime(cur_temps, "%H:%M:%S.%f")
+                            tf = datetime.combine(today,tf.time())
+                            delta = tf - t0
+
+                            if delta.total_seconds() < 0:
+                                tf = tf + timedelta(hours=12)
+                                warn_print=warn_print + 1
+                                if warn_print % 100 == 1:
+                                    print("correction +12h sur tf !")
+
                             delta = tf - t0
                             total_seconds = delta.total_seconds()
                             # convert the total seconds to hours, minutes, and seconds
@@ -116,11 +130,15 @@ while nb_rfids_vus < nb_rfids_inscrits:
         print(cur_dossards_vus, end="", flush=True)
         print(f"#{nb_rfids_vus}", end="", flush=True)
         cur_dossards_vus = ""
-        for i in range(nb_rfids_vus - nb_rfids_deja_imprimes):
-            commun.beep(b,100)
+        nb_beeps_à_émettre = nb_rfids_vus - nb_rfids_deja_imprimes
+        if nb_beeps_à_émettre > 30:
+            print(f" !! {nb_beeps_à_émettre} beeps non émis !!)")
+        else:
+            for i in range(nb_rfids_vus - nb_rfids_deja_imprimes):
+                commun.beep(b,100)
         nb_rfids_deja_imprimes = nb_rfids_vus
     print(".", end="", flush=True)
-    time.sleep(0.01)
+    time.sleep(0.2)
 
 print(f"cross terminé, {nb_rfids_vus} RFIDS détectés...")
 exit(0)
