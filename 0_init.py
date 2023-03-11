@@ -109,12 +109,16 @@ with open(T0_FILE, "w") as fichier_t0:
 print("\n")
 print("*** \n")
 reponse = input(
-    f"ATTENTION, CONFIRMER PAR 'oui' POUR EFFACEMENT DE {URA_DIRECTORY} ? (oui/NON)"
+    f"ATTENTION, CONFIRMER PAR 'oui' POUR EFFACEMENT DE {URA_DIRECTORY} et {RES_DIRECTORY} ? (oui/NON)"
 )
 
 if reponse == "oui":
-    # if directory can not be deleted ... you should warn instead...
-    shutil.rmtree(URA_DIRECTORY, ignore_errors=True)
-    shutil.rmtree(RES_DIRECTORY, ignore_errors=True)
+    for CURDIR in [ URA_DIRECTORY, RES_DIRECTORY]:
+        if os.path.exists(CURDIR):
+            try:
+                shutil.rmtree(CURDIR, ignore_errors=False)
+            except OSError as e:
+                print(f"echec lors de l'effacement de {CURDIR}..<{e.strerror}>")
+                exit(1)
 else:
     print("\n\n*** repertoire NON EFFACE... course déjà en cours ?")
