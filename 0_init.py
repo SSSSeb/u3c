@@ -79,9 +79,13 @@ print("")
 
 reponse = input("appuyer sur Entree pour tester le son (ou 'N' pour ne pas le faire)")
 if reponse != "N":
-    for i in range(0,10):
-        playsound(BEEP_FILE)
-        time.sleep(0.05)
+    pause_time=0.03
+    for i in range(0,5):
+        playsound(BEEP_FILE, block: True)
+        time.sleep(pause_time)
+    for i in range(0,5):
+        playsound(BEEP_FILE, block: False)
+        time.sleep(pause_time)
     print("test du son (10 bips en rafale) terminé")
 
 print("")
