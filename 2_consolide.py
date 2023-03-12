@@ -125,11 +125,13 @@ while nb_rfids_vus < nb_rfids_inscrits:
         if os.path.exists(dest_f):
             try:
                 os.remove(dest_f)
-            except OSError as e:
-                print(f"echec lors de l'effacement de {dest_f}..<{e.strerror}>")
+            except:
+               OSError as e:
+            print(f"echec lors de l'effacement de {dest_f}..<{e.strerror}>")
         try:
             os.symlink(dest_f_idx, dest_f, target_is_directory=False)
-        except OSError as e:
+        except:
+            OSError as e:
             print(f"echec lors de la création du lien {dest_f}..<{e.strerror}>")
         # print(nb_rfids)
         # print(f"{nb_rfids-nb_rfids_found} beeps...")
